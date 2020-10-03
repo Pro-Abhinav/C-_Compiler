@@ -119,4 +119,4 @@ namespace mc {
             return new SyntaxToken (SyntaxKind.BadToken, _position++, _text.Substring (_position - 1, 1), null);
         }
     }
-}
+}    
