@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace mc {
     class Program {
         static void Main (String[] args) {
@@ -19,12 +20,6 @@ namespace mc {
                         Console.Write($"{token.Value}");
                     Console.WriteLine();
                 }
-                // if (line == "1 + 2 *3")
-                //     Console.WriteLine ("7");
-                // else {
-                //     Console.WriteLine ("ERROR: Invalid expression!");
-
-                // }
             }
         }
     }
@@ -119,4 +114,46 @@ namespace mc {
             return new SyntaxToken (SyntaxKind.BadToken, _position++, _text.Substring (_position - 1, 1), null);
         }
     }
-}    
+
+    abstract class SyntaxNode
+    {
+        public abstract SyntaxKind Kind { get ; }
+    }
+    class Parser
+    {
+        private readonly SyntaxToken[] _tokens;
+        private int _position;
+
+        public Parser(string text)
+        {
+            var tokens = new List<SyntaxToken>();
+
+            var lexer = new Lexer(text);
+            SyntaxToken token;
+            do
+            {
+                token = lexer.NextToken();
+
+                if(token.Kind !=SyntaxKind.WhitespaceToken && 
+                    token.Kind != SyntaxKind.BadToken)
+                    {
+                        tokens.Add(token);
+                    } 
+            }while (token.Kind != SyntaxKind.EndOffileToken);
+
+            _tokens = tokens.ToArray();
+        }
+
+        private SyntaxToken Peek(int offset)
+        {
+            var index = _position + offset;
+            if(index >= _tokens.Length)
+                return _tokens[_tokens.Length - 1];
+            
+            return _tokens[index];
+        }
+
+        private SyntaxToken Current => Peek(0);
+    }
+} 
+   
