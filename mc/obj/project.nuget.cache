@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "aUulmi8NGUQ7gN8zZuvUYo2mzUCUIccgOR6uz8hVqqKsOsPpdBUX1Go6pk6+6jHmOfCGVOE2BB1ZrtaFxh3ujA==",
+  "success": true,
+  "projectFilePath": "D:\\Github\\Compiler\\mc\\mc.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Abhinav\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
